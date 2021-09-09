@@ -1,13 +1,10 @@
 import Foundation
 import XCTest
+import MobileCoreServices
 
 extension String {
     enum StringError: Error {
         case noSubstring(String, in: String)
-    }
-    
-    var escapingSpaces: String {
-        return replacingOccurrences(of: " ", with: "\\ ")
     }
     
     func upUntil(text: String) throws -> String {
@@ -33,6 +30,10 @@ public extension XCTestCase {
             return
         }
         recordIssue(message, type: type)
+    }
+    
+    func addVideoAttachment(_ data: Data) {
+        add(XCTAttachment(data: data, uniformTypeIdentifier: kUTTypeQuickTimeMovie as String))
     }
 }
 
